@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  virtual-mouse-control:
+    build: .
+    container_name: virtual-mouse-control
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /dev/video0:/dev/video0
+    devices:
+      - /dev/video0:/dev/video0
+    network_mode: host
+    stdin_open: true
+    tty: true
+    privileged: true
